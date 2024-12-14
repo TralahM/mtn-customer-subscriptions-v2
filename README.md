@@ -200,11 +200,13 @@ Note that requests that time out are [retried twice by default](#retries).
 
 We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
 
-You can enable logging by setting the environment variable `MTN_CUSTOMER_SUBSCRIPTIONS_V2_LOG` to `debug`.
+You can enable logging by setting the environment variable `MTN_CUSTOMER_SUBSCRIPTIONS_V2_LOG` to `info`.
 
 ```shell
-$ export MTN_CUSTOMER_SUBSCRIPTIONS_V2_LOG=debug
+$ export MTN_CUSTOMER_SUBSCRIPTIONS_V2_LOG=info
 ```
+
+Or to `debug` for more verbose logging.
 
 ### How to tell whether `None` means `null` or missing
 
@@ -304,18 +306,19 @@ can also get all the extra fields on the Pydantic model as a dict with
 
 You can directly override the [httpx client](https://www.python-httpx.org/api/#client) to customize it for your use case, including:
 
-- Support for proxies
-- Custom transports
+- Support for [proxies](https://www.python-httpx.org/advanced/proxies/)
+- Custom [transports](https://www.python-httpx.org/advanced/transports/)
 - Additional [advanced](https://www.python-httpx.org/advanced/clients/) functionality
 
 ```python
+import httpx
 from mtn_customer_subscriptions_v2 import MtnCustomerSubscriptionsV2, DefaultHttpxClient
 
 client = MtnCustomerSubscriptionsV2(
     # Or use the `MTN_CUSTOMER_SUBSCRIPTIONS_V2_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
-        proxies="http://my.test.proxy.example.com",
+        proxy="http://my.test.proxy.example.com",
         transport=httpx.HTTPTransport(local_address="0.0.0.0"),
     ),
     access_token="My Access Token",
