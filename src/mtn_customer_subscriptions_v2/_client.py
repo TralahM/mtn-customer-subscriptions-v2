@@ -8,7 +8,7 @@ from typing_extensions import Self, override
 
 import httpx
 
-from . import _exceptions
+from . import resources, _exceptions
 from ._qs import Querystring
 from ._types import (
     NOT_GIVEN,
@@ -24,7 +24,6 @@ from ._utils import (
     get_async_library,
 )
 from ._version import __version__
-from .resources import callback
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, MtnCustomerSubscriptionsV2Error
 from ._base_client import (
@@ -32,13 +31,13 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.customers import customers
 
 __all__ = [
     "Timeout",
     "Transport",
     "ProxiesTypes",
     "RequestOptions",
+    "resources",
     "MtnCustomerSubscriptionsV2",
     "AsyncMtnCustomerSubscriptionsV2",
     "Client",
@@ -47,8 +46,8 @@ __all__ = [
 
 
 class MtnCustomerSubscriptionsV2(SyncAPIClient):
-    customers: customers.CustomersResource
-    callback: callback.CallbackResource
+    customers: resources.CustomersResource
+    callback: resources.CallbackResource
     with_raw_response: MtnCustomerSubscriptionsV2WithRawResponse
     with_streaming_response: MtnCustomerSubscriptionsV2WithStreamedResponse
 
@@ -118,8 +117,8 @@ class MtnCustomerSubscriptionsV2(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.customers = customers.CustomersResource(self)
-        self.callback = callback.CallbackResource(self)
+        self.customers = resources.CustomersResource(self)
+        self.callback = resources.CallbackResource(self)
         self.with_raw_response = MtnCustomerSubscriptionsV2WithRawResponse(self)
         self.with_streaming_response = MtnCustomerSubscriptionsV2WithStreamedResponse(self)
 
@@ -231,8 +230,8 @@ class MtnCustomerSubscriptionsV2(SyncAPIClient):
 
 
 class AsyncMtnCustomerSubscriptionsV2(AsyncAPIClient):
-    customers: customers.AsyncCustomersResource
-    callback: callback.AsyncCallbackResource
+    customers: resources.AsyncCustomersResource
+    callback: resources.AsyncCallbackResource
     with_raw_response: AsyncMtnCustomerSubscriptionsV2WithRawResponse
     with_streaming_response: AsyncMtnCustomerSubscriptionsV2WithStreamedResponse
 
@@ -302,8 +301,8 @@ class AsyncMtnCustomerSubscriptionsV2(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.customers = customers.AsyncCustomersResource(self)
-        self.callback = callback.AsyncCallbackResource(self)
+        self.customers = resources.AsyncCustomersResource(self)
+        self.callback = resources.AsyncCallbackResource(self)
         self.with_raw_response = AsyncMtnCustomerSubscriptionsV2WithRawResponse(self)
         self.with_streaming_response = AsyncMtnCustomerSubscriptionsV2WithStreamedResponse(self)
 
@@ -416,26 +415,26 @@ class AsyncMtnCustomerSubscriptionsV2(AsyncAPIClient):
 
 class MtnCustomerSubscriptionsV2WithRawResponse:
     def __init__(self, client: MtnCustomerSubscriptionsV2) -> None:
-        self.customers = customers.CustomersResourceWithRawResponse(client.customers)
-        self.callback = callback.CallbackResourceWithRawResponse(client.callback)
+        self.customers = resources.CustomersResourceWithRawResponse(client.customers)
+        self.callback = resources.CallbackResourceWithRawResponse(client.callback)
 
 
 class AsyncMtnCustomerSubscriptionsV2WithRawResponse:
     def __init__(self, client: AsyncMtnCustomerSubscriptionsV2) -> None:
-        self.customers = customers.AsyncCustomersResourceWithRawResponse(client.customers)
-        self.callback = callback.AsyncCallbackResourceWithRawResponse(client.callback)
+        self.customers = resources.AsyncCustomersResourceWithRawResponse(client.customers)
+        self.callback = resources.AsyncCallbackResourceWithRawResponse(client.callback)
 
 
 class MtnCustomerSubscriptionsV2WithStreamedResponse:
     def __init__(self, client: MtnCustomerSubscriptionsV2) -> None:
-        self.customers = customers.CustomersResourceWithStreamingResponse(client.customers)
-        self.callback = callback.CallbackResourceWithStreamingResponse(client.callback)
+        self.customers = resources.CustomersResourceWithStreamingResponse(client.customers)
+        self.callback = resources.CallbackResourceWithStreamingResponse(client.callback)
 
 
 class AsyncMtnCustomerSubscriptionsV2WithStreamedResponse:
     def __init__(self, client: AsyncMtnCustomerSubscriptionsV2) -> None:
-        self.customers = customers.AsyncCustomersResourceWithStreamingResponse(client.customers)
-        self.callback = callback.AsyncCallbackResourceWithStreamingResponse(client.callback)
+        self.customers = resources.AsyncCustomersResourceWithStreamingResponse(client.customers)
+        self.callback = resources.AsyncCallbackResourceWithStreamingResponse(client.callback)
 
 
 Client = MtnCustomerSubscriptionsV2

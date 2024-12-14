@@ -4,6 +4,14 @@ from __future__ import annotations
 
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
+from .subscriptions import (
+    SubscriptionsResource,
+    AsyncSubscriptionsResource,
+    SubscriptionsResourceWithRawResponse,
+    AsyncSubscriptionsResourceWithRawResponse,
+    SubscriptionsResourceWithStreamingResponse,
+    AsyncSubscriptionsResourceWithStreamingResponse,
+)
 from .subscriptions_providers import (
     SubscriptionsProvidersResource,
     AsyncSubscriptionsProvidersResource,
@@ -12,14 +20,7 @@ from .subscriptions_providers import (
     SubscriptionsProvidersResourceWithStreamingResponse,
     AsyncSubscriptionsProvidersResourceWithStreamingResponse,
 )
-from .subscriptions.subscriptions import (
-    SubscriptionsResource,
-    AsyncSubscriptionsResource,
-    SubscriptionsResourceWithRawResponse,
-    AsyncSubscriptionsResourceWithRawResponse,
-    SubscriptionsResourceWithStreamingResponse,
-    AsyncSubscriptionsResourceWithStreamingResponse,
-)
+from .subscriptions.subscriptions import SubscriptionsResource, AsyncSubscriptionsResource
 
 __all__ = ["CustomersResource", "AsyncCustomersResource"]
 
